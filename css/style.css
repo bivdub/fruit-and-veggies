@@ -1,1 +1,8 @@
 /* file for your css */
+.winner {
+  color: green;
+}
+
+.loser {
+  color: red;
+}

@@ -9,19 +9,41 @@
         <script src="js/fruit_and_veggies.js"></script>
         <script src="js/app.js"></script>
     </head>
-    <body>
-        <div class="container">
+    <body ng-app="FruitVeg">
+        <div class="container" ng-controller="GameController">
             <h1>Fruit and Veggies</h1>
             <div class="row">
                 <div class="col-sm-4">
-                    col 1
+                    <h2>Fruit!</h2>
+                    <div ng-class="{'winner': item.type == 'fruit',
+                                    'loser': item.type == 'vegetable'}"
+                        ng-repeat="item in leftCol track by $index">
+                        <ul>
+                        {{item.name}}
+                        <button ng-click="moveRight($index, 'left')" class="glyphicon glyphicon-chevron-right"></button>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-sm-4">
-                    col 2
+                    <h2>Both!</h2>
+                    <div ng-repeat="item in center track by $index">
+                        <ul>
+                        <button ng-click="moveLeft($index, 'center')" class="glyphicon glyphicon-chevron-left"></button>
+                        {{item.name}}
+                        <button ng-click="moveRight($index, 'center')" class="glyphicon glyphicon-chevron-right"></button>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-sm-4">
-                    col 3
-                </div>                        
+                    <h2>Vegetable!</h2>
+                    <div ng-class="{'winner': item.type == 'vegetable',
+                                    'loser': item.type == 'fruit'}"ng-repeat="item in rightCol track by $index">
+                        <ul>
+                        <button ng-click="moveLeft($index, 'right')" class="glyphicon glyphicon-chevron-left"></button>
+                        {{item.name}}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
